@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminEditRequest;
 use App\Http\Requests\AdminRequest;
 use App\Models\User;
 use App\Models\Admin;
@@ -19,6 +20,25 @@ class AdminController extends Controller
             'user_id' => $userId->id
         ]);
         return redirect("/admin");
+    }
+
+    public function editAdmin(AdminEditRequest $request)
+    {
+        $data = $request->validated();
+        $admin = User::where('id', $data['id'])->first();
+        if (!$admin) {
+            return redirect()->back()->withErrors(['error', 'Data Admin tidak ada']);
+        }
+        $admin->fill($data);
+        $admin->save();
+        return redirect('/admin');
+    }
+
+    public function deleteAdmin($id)
+    {
+        Admin::where('user_id', $id)->delete();
+        User::where('id', $id)->delete();
+        return redirect('/admin');
     }
 
     public function absenView()

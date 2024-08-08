@@ -20,13 +20,24 @@
                     <tr>
                         <td>{{$a->user->nama}}</td>
                         <td>{{$a->user->password}}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
-                            data-bs-target="#exampleModal" 
-                            data-id="{{ $a->id }}" 
-                            data-nama="{{ $a->user->nama }}" 
-                            data-password="{{ $a->user->password }}">Edit</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
+                        <td class="">
+                          <div class="d-flex justify-start">
+                            <div class="mr-2">
+                              <button type="button" class="btn btn-danger" data-bs-toggle="modal" 
+                              data-bs-target="#exampleModal" 
+                              data-id="{{ $a->user_id }}" 
+                              data-nama="{{ $a->user->nama }}" 
+                              id="button"
+                              data-password="{{ $a->user->password }}">Edit</button>
+                            </div>
+                            <div class="mr-2">
+                              <form action="/deleteAdmin/{{$a->user_id}}" method="post" class="">
+                                @csrf
+                                <button class="btn btn-danger" >Hapus</button>
+                              </form>
+                            </div>
+                              
+                            </div>
                         </td>
                       </tr>
                       @endforeach
@@ -42,18 +53,20 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form method="POST" action="/editAdmin">
+                @csrf
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nama:</label>
                   <input type="text" class="form-control" id="recipient-name" name="nama">
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Password:</label>
-                  <input type="password" class="form-control" id="recipient-name" name="password">
+                  <input type="password" class="form-control" id="recipient-password" name="password">
                 </div>
+                <input type="text" id="recipient-id" name="id" hidden>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
                   </div>
               </form>
             </div>
@@ -74,11 +87,11 @@
                 @csrf
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Nama:</label>
-                  <input type="text" class="form-control" id="recipient-name" name="nama">
+                  <input type="text" class="form-control" id="recipient-name1" name="nama">
                 </div>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Password:</label>
-                  <input type="password" class="form-control" id="recipient-name" name="password">
+                  <input type="password" class="form-control" id="recipient-password1" name="password">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -92,25 +105,27 @@
       </div>
 </div>
 <script>
-    var exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  var button = event.relatedTarget
-  var id = button.getAttribute('data-id')
-  var nama = button.getAttribute('data-nama')
-  var password = button.getAttribute('data-password')
-  var modalTitle = exampleModal.querySelector('.modal-title')
-  var modalBodyInputNama = exampleModal.querySelector('#recipient-name')
-  var modalBodyInputPassword = exampleModal.querySelector('#recipient-password')
+  const exampleModal = document.getElementById('exampleModal')
+  exampleModal.addEventListener('show.bs.modal', function (event) {
+  const button = event.relatedTarget
+  const id = button.getAttribute('data-id')
+  const nama = button.getAttribute('data-nama')
+  const password = button.getAttribute('data-password')
+  const modalTitle = exampleModal.querySelector('.modal-title')
+  const modalBodyInputNama = exampleModal.querySelector('#recipient-name')
+  const modalBodyInputPassword = exampleModal.querySelector('#recipient-password')
+  const modalBodyInputId = exampleModal.querySelector('#recipient-id')
   modalBodyInputNama.value = nama
   modalBodyInputPassword.value = password
+  modalBodyInputId.value = id
   exampleModal.querySelector('form').setAttribute('data-id', id)
 })
-var exampleModal = document.getElementById('exampleModal1')
-exampleModal.addEventListener('show.bs.modal', function (event) {
-  var button = event.relatedTarget
-  var recipient = button.getAttribute('data-bs-whatever')
-  var modalTitle = exampleModal.querySelector('.modal-title')
-  var modalBodyInput = exampleModal.querySelector('.modal-body input')
+const exampleModal1 = document.getElementById('exampleModal1')
+exampleModal1.addEventListener('show.bs.modal', function (event) {
+  const button = event.relatedTarget
+  const recipient = button.getAttribute('data-bs-whatever')
+  const modalTitle = exampleModal1.querySelector('.modal-title')
+  const modalBodyInput = exampleModal1.querySelector('.modal-body input')
 })
 </script>
 @endsection
