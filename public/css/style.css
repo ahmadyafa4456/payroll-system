@@ -22,7 +22,12 @@
     background-color: #fff;
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.195);
     width: 35%;
-    padding: 35px;
+    padding: 39px;
+    height: 50%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    border-radius: 20px;
 }
 
 .text-role {
@@ -33,9 +38,67 @@
 }
 
 .select-role {
-    background-color: aqua;
+    background-color: #4e73df;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 14px;
+    margin-bottom: 21px;
 }
 
 .select-role a {
     text-decoration: none;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.sr-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* login */
+
+.text-size {
+    font-size: 15px !important;
+}
+
+.kembali {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.kembali a {
+    text-decoration: none;
+}
+
+/* table */
+.table-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+tr {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-right: 1px solid black;
+}
+thead {
+    background-color: #f2f2f2;
+}
+thead tr {
+    border-top: 1px solid black;
 }

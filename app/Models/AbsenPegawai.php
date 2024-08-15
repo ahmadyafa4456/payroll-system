@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Pegawai extends Model
+class AbsenPegawai extends Model
 {
     use HasFactory;
-    protected $table = "pegawai";
+    protected $table = "absen_pegawai";
     protected $primaryKey = "id";
     protected $keyType = "int";
     public $incrementing = true;
     protected $guarded = ["id"];
     public $timestamps = false;
 
-    public function absenPegawai()
+    public function pegawai()
     {
-        return $this->hasMany(AbsenPegawai::class, 'pegawai_id', 'id');
+        return $this->belongsTo(Pegawai::class, 'pegawai_id', 'id');
     }
 }

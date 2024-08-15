@@ -19,16 +19,11 @@ class AuthController extends Controller
     public function loginStore(UserLoginRequest $request)
     {
         $data = $request->validated();
-        $user = User::where('nama', $data['nama'])->where('password', $data['password'])->first();
-        if (!$user) {
-            return back()->with('error', 'nama atau password anda salah');
+        $user = User::where('nama', $data['nama'])->first();
+        if(!$user || $user->password !== $data['password']){
+            return redirect("/login");
         }
         Auth::login($user);
-        if (Pegawai::where('user_id', Auth::id())->first()) {
-            return view('pegawai.home');
-        }
-        if (Admin::where('user_id', Auth::id())->first()) {
-            return view('admin.absen');
-        }
+        return redirect("/absen");
     }
 }

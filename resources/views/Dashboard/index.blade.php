@@ -11,8 +11,13 @@
     <div class="select-role-container">
         <div class="select-role-content">
             <div class="text-role">Pilih absen</div>
-            <div class="select-role">
-                <a href="">Pegawai</a>
+            <div class="sr-container">
+                <div class="select-role">
+                    <a href="/pilih-pegawai">Pegawai</a>
+                </div>
+                <div class="select-role">
+                    <a href="/login">Admin</a>
+                </div>
             </div>
         </div>
     </div>

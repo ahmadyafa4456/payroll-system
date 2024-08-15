@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
@@ -38,21 +39,23 @@
                             <div class="">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login Admin</h1>
                                     </div>
-                                    <form class="user">
+                                    <form action="/loginStore" method="POST" class="user">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Masukkan Nama">
+                                            <input type="text" class="form-control form-control-user"
+                                                aria-describedby="emailHelp"
+                                                placeholder="Masukkan Nama" name="nama">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                               placeholder="Password" name="password">
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Login</button>
+                                        <div class="kembali text-size">
+                                            <a href="/">Kembali</a>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
